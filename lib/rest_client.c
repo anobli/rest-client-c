@@ -477,6 +477,8 @@ void RestFilter_execute_curl_request(RestFilter *self, RestClient *rest,
 	free(encoded_uri);
 
 	curl_easy_setopt(curl, CURLOPT_URL, endpoint_url);
+	if (rest->port)
+		curl_easy_setopt(curl, CURLOPT_PORT, rest->port);
 	curl_easy_setopt(curl, CURLOPT_NOSIGNAL, 0);
 	curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, CONNECT_TIMEOUT);
 	curl_easy_setopt(curl, CURLOPT_NOPROGRESS, 1);
